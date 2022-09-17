@@ -1,21 +1,24 @@
+#### spring-boot-dockerize
+How to Dockerize Spring Boot Application
 
-#### Docker - Dockerizing your Spring Boot Application 
+#### Build Docker Image
+$ docker build -t spring-boot-docker.jar .
+
+#### Check Docker Image
+$ docker image ls
+
+#### Run Docker Image
+$ docker run -p 9090:8080 spring-boot-docker.jar
+
+In the run command, we have specified that the port 8080 on the container should be mapped to the port 9090 on the Host OS.
 
 
+Create a new Dockerfile in STS:
 
 ```
-
-
-cd /C
-
-cd SPRING-BOOT/spring-boot-docker
-
-docker build -t spring-boot-docker.jar
-
-docker image ls
-
-docker run -p 9090:8080 spring-boot-docker.jar
-
-
+FROM openjdk:8-jdk-alpine
+MAINTAINER baeldung.com
+COPY target/docker-message-server-1.0.0.jar message-server-1.0.0.jar
+ENTRYPOINT ["java","-jar","/message-server-1.0.0.jar"]
 
 ```
